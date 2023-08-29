@@ -8,7 +8,7 @@ const port = 3000;
 
 app.use(express.json());
 
-const whitelist = ['http://localhost:80', 'https://myapp.co'];
+const whitelist = ['http://localhost:8080', 'https://myapp.co'];
 const options = {
   origin: (origin, callback) => {
     console.log('los origenes son',origin)
@@ -19,7 +19,7 @@ const options = {
     }
   }
 }
-app.use(cors(options));
+app.use(cors());
 
 routerApi(app);
 
