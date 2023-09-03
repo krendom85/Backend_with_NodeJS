@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "dump": "^1.0.1",
+    "puppeteer": "^21.1.0"
+  }
+}
