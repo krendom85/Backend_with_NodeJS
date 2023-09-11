@@ -29,7 +29,53 @@
 
 - docker-composer down
 
+#### Ingresar a un bash dentro del contenedor via terminal
+
+- docker-compose exec postgres bash
+
+#### Revisar la base de datos en postgres
+
+- psql -h localhost -d <Base de datos> -U <usuario>
+
+#### Revisar si existe alguna tabla en postgres
+
+- \d+
+
+#### Salir de la base de datos
+
+- \q
+
+#### Visualizar lso proceso en docker con el id
+
+- docker ps
+
+#### Inpeccionar el contenedor mediante el id
+
+- docker inspect <id>
+
+#### Libreria para manejar postgres con node.js
+
+- npm install pg
+
+#### Libreria para manejar las variables de entorno
+
+- npm install dotenv
+
+#### Instalara libreria ORM manejo de la base de datos
+- npm install --save sequelize
+
+#### Dependendica para trabajar la libreria orm y postgres
+- npm install --save pg pg-hstore
+
+#### Dependencia para trabajar con la libreria orm y mysql
+- npm install --save mysql2
+
+#### Instalas dependeica para trabajar con migraciones con el orm sequlize en modo desarrollo
+- npm i sequelize-cli --save-dev
+
 --- 
+
+
 
 ## Instalación de Docker
 
