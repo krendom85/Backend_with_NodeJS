@@ -9,49 +9,27 @@
 
 ## Descripcion
 
+En este programa se implementara todo lo relacionado a los siguientes temas
+  - Migraciones
+  - Creacion de esquemas
+  - Consultas a base de datos.
+  - Relaciones entre tablas.
+
+La bases de datos las cuales soporta el progrma son Posgrest y MySql, todo el programa se encuentra realizado con contenedores docker.
+
+El programa consiste en una tienda virtual, la cual posee varios endPoint los cuales nos permitira realizar la creacion de productos, ordenes de compras, categorias,  y clientes.
+
+Con esto se administrara las partes basicas para la aplicacion de la tienda virtual.
+
+Los endpoints que se encuentran creados se encuentran en el archivo Insomnia.json, los cuales se abren exclusivamente en la aplicacion Insomnia.
+
 ---
 
-## Comandos
+## Comandos 
 
 #### Instalar las dependencias de un proyecto realizado
 
 - npm i
-
-#### Ejecutar un contenedor de docker
-
-- docker-composer up -d <name_service> 
-
-#### Verificar que procesos de docker esta corriendo
-
-- docker-composer ps
-
-#### Bajar un proceso corriendo en el docker
-
-- docker-composer down
-
-#### Ingresar a un bash dentro del contenedor via terminal
-
-- docker-compose exec postgres bash
-
-#### Revisar la base de datos en postgres
-
-- psql -h localhost -d <Base de datos> -U <usuario>
-
-#### Revisar si existe alguna tabla en postgres
-
-- \d+
-
-#### Salir de la base de datos
-
-- \q
-
-#### Visualizar lso proceso en docker con el id
-
-- docker ps
-
-#### Inpeccionar el contenedor mediante el id
-
-- docker inspect <id>
 
 #### Libreria para manejar postgres con node.js
 
@@ -73,6 +51,46 @@
 #### Instalas dependeica para trabajar con migraciones con el orm sequlize en modo desarrollo
 - npm i sequelize-cli --save-dev
 
+### Manejo de docker
+
+#### Ejecutar un contenedor de docker
+
+- docker-composer up -d <name_service> 
+
+#### Verificar que procesos de docker esta corriendo
+
+- docker-composer ps
+
+#### Bajar un proceso corriendo en el docker
+
+- docker-composer down
+
+#### Ingresar a un bash dentro del contenedor via terminal
+
+- docker-compose exec postgres bash
+
+#### Visualizar lso proceso en docker con el id
+
+- docker ps
+
+#### Inpeccionar el contenedor mediante el id
+
+- docker inspect <id>
+
+
+### Manejo de postgres
+
+#### Revisar la base de datos en postgres
+
+- psql -h localhost -d <Base de datos> -U <usuario>
+
+#### Revisar si existe alguna tabla en postgres
+
+- \d+
+
+#### Salir de la base de datos
+
+- \q
 --- 
 
 
@@ -173,7 +191,6 @@ Para poder probar nuestra API de forma más productiva vamos a tener que usar al
 
 Como cliente para probar APIs tiene grandes características, destaca principalmente por una interfaz limpia y sencilla, pero a la vez potente, en donde puede configurar ambientes, exportar e importar, gran soporte con GraphQL, etc. Insomnia será el que vamos a usar en este curso 🙂
 
-![Alt text](img/image.png)
 
 #### Instalación
 
@@ -200,52 +217,56 @@ sudo yam install postman
 ```
 ---
 
+
 ## Prueba
 
-> **1. ¿Cuál es propósito de instalar nodemon?**
->      - Nos funciona para hacer livereload cada que hagamos cambios en archivos js
+> **1. ¿Cuál es comando que usamos para levantar el contendedor de Postgres con Docker?**
+>      - docker-compose up -d postgres
 
-> **2. Nos funciona para hacer livereload cada que hagamos cambios en archivos js**
->     - app.listen(8000)
+> **2. ¿Es una buena práctica manejar nuestra conexión con Postgres usando la estrategia de pooling?**
+>     - Verdadero
 
-> **3. ¿Cuál método de express nos sirve para retornar un formato json como respuesta?**
->     - app.json({...})
+> **3. ¿Cuál es la forma correcta de leer la variable de ambiente PORT con NodeJS?**
+>     - proccess.env.PORT
 
-> **4. ¿Cuál es la manera correcta de declarar una ruta que reciba un parámetro llamado productId?**
->     - app.get('/products/:productId',  ...)
+> **4. ¿SequelizeORM se puede conectar a MySql y Postgres o solo funciona para Postgres?**
+>     - Funciona para ambos
 
-> **5. ¿Cuál es la manera correcta para obtener el parámetro productId enviado desde una ruta con GET?**
->     - const { productId } = req.params;
+> **5. ¿Cuál es la forma de definir un campo como Integer con Sequelize?**
+>     - DataTypes.INTEGER
 
-> **6. ¿Cuál es la manera correcta de obtener parámetros tipo query de una ruta con GET?**
->     - const { limit, offset } = req.query;
+> **6. ¿Cuál es la forma de obtener una entidad de la base de datos con base a la PK?**
+>     - models.MyModel.findByPk(myId)
 
-> **7. ¿Cuál es la definición más adecuada para el principio de Single Resposability?**
->     - Cada módulo, clase o función debería tener una sola responsabilidad.
+> **7. ¿Cuál es la forma de eliminar una entidad de la base de datos con base a la PK?**
+>     - const model = await models.MyModel.findByPk(myId) await model.destroy();.
 
-> **8. Cada módulo, clase o función debería tener una sola responsabilidad.**
->     - app.use(express.json())
+> **8. ¿Cuál es el puerto por defecto en el cual Mysql corre por defecto?**
+>     - 3306
 
-> **9. ¿Cuál es la forma correcta para definir una ruta de tipo patch para actualizar una entidad?**
->     - router.patch('/tasks/:id', ...)
-
-> **10. ¿Cuál es la forma correcta de enviar un error de tipo 404 con una respuesta tipo JSON?**
->     - res.status(404).json({ message })
-
-> **11. ¿Cuál es la responsabilidad principal de los servicios?**
->     - Usualmente está toda la lógica de negocio y resuelve los casos de uso
-
-> **12. ¿Qué parámetros debemos recibir para tener un middleware que lea errores?**
->     - error, req, res y next
-
-> **13. ¿Cuál es el objetivo de la librería Boom?**
->     - Manejo de errores http
-
-> **14. ¿Cuál es el objetivo de la librería Joi?**
->     - Validación de datos por medio de un schema
-
-> **15. ¿Si una solicitud sale desde el mismo origen, hay problema de CORS?**
+> **9. ¿Correr la forma de sync de Sequelize es recomendado para producción?**
 >     - Falso
 
-> **16. ¿Cuál es el objetivo del archivo Procfile de Heroku?**
->     - Es este archivo ejecutamos un script para correr la app en prod.
+> **10. ¿Cuál es la funcionalidad de sequelize-cli ?**
+>     - Scripts para correr y manejar migraciones
+
+> **11. ¿Cuál es el método que nos ofrece queryInterface para agregar una columna?**
+>     - queryInterface.addColumn(...)
+
+> **12. ¿Cuál es la forma de crear una entidad en la base de datos usando Sequelize?**
+>     - models.MyModel.create(...)
+
+> **13. ¿Cuáles son los métodos que nos ofrece sequelize para expresar una relación uno a uno?**
+>     - hasOne  y belongsTo
+
+> **14. ¿Cuáles son los métodos que nos ofrece sequelize para expresar una relación uno a muchos?**
+>     - hasMany y belongsTo
+
+> **15. ¿Cuáles son los métodos que nos ofrece sequelize para expresar una relación muchos a muchos?**
+>     - belongsToMany
+
+> **16. ¿Cuál es la forma en que podemos hacer paginación usando Sequelize?**
+>     - models.MyModel.findAll({ limit, offset })
+
+> **17. ¿Cuál es el atributo que nos da Sequelize para obtener relaciones desde el método findAll?**
+>     - include
